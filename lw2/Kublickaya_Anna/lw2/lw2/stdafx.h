@@ -11,3 +11,9 @@
 #include <ctime>
 #include <iostream>
 #include <queue>
+#include <random>
+
+#include "CCashier.h"
+#include "CCustomer.h"
+#include "CThreadHandler.h"
+#include "NSupermarketTools.h"

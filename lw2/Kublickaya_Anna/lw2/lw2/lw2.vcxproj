@@ -23,6 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>lw2</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Supermarket</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -145,11 +146,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CCashier.h" />
+    <ClInclude Include="CCustomer.h" />
+    <ClInclude Include="CRandomize.h" />
+    <ClInclude Include="CThreadHandler.h" />
+    <ClInclude Include="NSupermarketTools.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lw2.cpp" />
+    <ClCompile Include="CCashier.cpp" />
+    <ClCompile Include="CCustomer.cpp" />
+    <ClCompile Include="CRandomize.cpp" />
+    <ClCompile Include="CThreadsHandler.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="NSupermarketTools.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
