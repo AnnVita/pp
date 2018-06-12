@@ -1,48 +1,36 @@
 #include "stdafx.h"
 #include "CMultithreadedPiCounter.h"
 #include "CRandomize.h"
-#include "SPiCountTools.h"
 
-CMultithreadedPiCounter::CMultithreadedPiCounter(size_t countIterations, size_t countThreads)
+CMultithreadedPiCounter::CMultithreadedPiCounter(size_t countIterations)
 	: m_countIterations(countIterations)
-	, m_countThreads(countThreads)
-	, m_threadHandler(std::make_shared<CThreadHandler>())
+	, m_random(std::make_shared<CRandomize>(-m_CIRCLE_RADIUS, m_CIRCLE_RADIUS))
 {
-	InitThreads();
-}
-
-void CMultithreadedPiCounter::InitThreads()
-{
-	m_threadResults.assign(m_countThreads, ThreadResult{ 0, m_countIterations / m_countThreads });
-	int residueDivision = m_countIterations % m_countThreads;
-	for (size_t i = 0; i < m_countThreads; ++i)
-	{
-		if (residueDivision != 0)
-		{
-			residueDivision--;
-			m_threadResults[i].countIterations++;
-		}
-	}
-	for (size_t i = 0; i < m_countThreads; ++i)
-	{
-		m_threadHandler->AddThread(CreateThread(NULL, NULL, &GetCountPointsInCircle, &m_threadResults[i], NULL, NULL));
-	}
 }
 
 double CMultithreadedPiCounter::CountPi()
 {
-	m_threadHandler->Execute();
-	size_t countPointsInCircle = std::accumulate(m_threadResults.begin(), m_threadResults.end(), 0, 
-		[](int currentCount, ThreadResult const& value) {
-		return currentCount + value.countPointsInCircle;
-	});
+	int countPointsInCircle = GetCountPointsInCircle(m_countIterations);
 	return 4.0 * countPointsInCircle / m_countIterations;
 }
 
-
-DWORD WINAPI CMultithreadedPiCounter::GetCountPointsInCircle(LPVOID lpParam)
+bool CMultithreadedPiCounter::IsPointInCircle(CPoint const& point)
 {
-	ThreadResult * threadResult = ((ThreadResult*)lpParam);
-	threadResult->countPointsInCircle = SPiCountTools::GetCountPointsInsideCircle(threadResult->countIterations);
-	ExitThread(0);
+	return point.GetX() * point.GetX() + point.GetY() * point.GetY() <= m_CIRCLE_RADIUS;
+}
+
+size_t CMultithreadedPiCounter::GetCountPointsInCircle(int countIterations)
+{
+	#pragma omp parallel for
+	for (int i = 0; i < countIterations; ++i)
+	{
+		CPoint point = m_random->GetPoint();
+
+		if (IsPointInCircle(point))
+		{
+			#pragma omp atomic
+			++m_countPointInCircle;
+		}
+	}
+	return m_countPointInCircle;
 }

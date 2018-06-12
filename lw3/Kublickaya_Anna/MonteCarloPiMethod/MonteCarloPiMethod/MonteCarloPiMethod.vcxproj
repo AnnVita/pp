@@ -148,11 +148,9 @@
     <ClInclude Include="CMultithreadedPiCounter.h" />
     <ClInclude Include="CPoint.h" />
     <ClInclude Include="CRandomize.h" />
-    <ClInclude Include="CSimplePiCounter.h" />
     <ClInclude Include="CThreadHandler.h" />
     <ClInclude Include="IPiCounter.h" />
     <ClInclude Include="NCommandLineTools.h" />
-    <ClInclude Include="SPiCountTools.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -160,11 +158,9 @@
     <ClCompile Include="CMultithreadedPiCounter.cpp" />
     <ClCompile Include="CPoint.cpp" />
     <ClCompile Include="CRandomize.cpp" />
-    <ClCompile Include="CSimplePiCounter.cpp" />
     <ClCompile Include="CThreadHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NCommandLineTools.cpp" />
-    <ClCompile Include="SPiCountTools.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

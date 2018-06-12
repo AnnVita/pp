@@ -27,13 +27,7 @@
     <ClInclude Include="IPiCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SPiCountTools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CSimplePiCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CRandomize.h">
@@ -56,13 +50,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CSimplePiCounter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CPoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SPiCountTools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CRandomize.cpp">

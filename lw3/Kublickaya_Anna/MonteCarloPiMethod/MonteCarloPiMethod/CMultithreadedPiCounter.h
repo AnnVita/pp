@@ -3,6 +3,7 @@
 #include "CPoint.h"
 #include "IPiCounter.h"
 #include "CThreadHandler.h"
+#include "CRandomize.h"
 
 struct ThreadResult
 {
@@ -15,15 +16,15 @@ using ThreadResults = std::vector<ThreadResult>;
 class CMultithreadedPiCounter : public IPiCounter
 {
 public:
-	CMultithreadedPiCounter(size_t countIterations, size_t countThreads);
+	CMultithreadedPiCounter(size_t countIterations);
 	double CountPi() override;
 private:
+	bool IsPointInCircle(CPoint const & point);
+	size_t GetCountPointsInCircle(int countIterations);
+
 	size_t m_countIterations;
-	size_t m_countThreads;
+	int m_countPointInCircle = 0;
+	std::shared_ptr<CRandomize> m_random;
 
-	static DWORD WINAPI GetCountPointsInCircle(LPVOID lpParam);
-	void InitThreads();
-
-	std::shared_ptr<CThreadHandler> m_threadHandler;
-	std::vector<ThreadResult> m_threadResults;
+	static const int m_CIRCLE_RADIUS = 1;
 };
